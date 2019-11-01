@@ -3,7 +3,7 @@
 
     <groupId>org.redisson</groupId>
     <artifactId>redisson-parent</artifactId>
-    <version>3.11.6.1-ZTS</version>
+    <version>3.11.6.2-ZTS-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Redisson</name>
@@ -28,7 +28,7 @@
         <url>scm:git:git@github.com:roc-wong/redisson.git</url>
         <connection>scm:git:git@github.com:roc-wong/redisson.git</connection>
         <developerConnection>scm:git:git@github.com:roc-wong/redisson.git</developerConnection>
-        <tag>redisson-parent-3.11.6.1-ZTS</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <prerequisites>
