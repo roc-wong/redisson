@@ -68,6 +68,11 @@ public class BaseMasterSlaveServersConfig<T extends BaseMasterSlaveServersConfig
     private int subscriptionConnectionMinimumIdleSize = 1;
 
     /**
+     * @deprecated use {@link #setSubscriptionConnectionMinimumIdleSize(int)}
+     */
+    private int slaveSubscriptionConnectionMinimumIdleSize = 1;
+
+    /**
      * @deprecated use {@link #setSubscriptionConnectionPoolSize(int)}
      */
     private int slaveSubscriptionConnectionPoolSize;
@@ -299,4 +304,19 @@ public class BaseMasterSlaveServersConfig<T extends BaseMasterSlaveServersConfig
     public boolean checkSkipSlavesInit() {
         return getReadMode() == ReadMode.MASTER && getSubscriptionMode() == SubscriptionMode.MASTER;
     }
+
+    /**
+     * @deprecated use {@link #setSubscriptionConnectionMinimumIdleSize(int)}
+     *
+     * @param slaveSubscriptionConnectionMinimumIdleSize - pool size
+     */
+    @Deprecated
+    public void setSlaveSubscriptionConnectionMinimumIdleSize(int slaveSubscriptionConnectionMinimumIdleSize) {
+        setSubscriptionConnectionMinimumIdleSize(slaveSubscriptionConnectionMinimumIdleSize);
+    }
+    @Deprecated
+    public int getSlaveSubscriptionConnectionMinimumIdleSize() {
+        return getSubscriptionConnectionMinimumIdleSize();
+    }
+
 }
