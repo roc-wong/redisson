@@ -197,11 +197,11 @@ public class Config {
         return clusterServersConfig;
     }
 
-    ClusterServersConfig getClusterServersConfig() {
+    public ClusterServersConfig getClusterServersConfig() {
         return clusterServersConfig;
     }
 
-    void setClusterServersConfig(ClusterServersConfig clusterServersConfig) {
+    public void setClusterServersConfig(ClusterServersConfig clusterServersConfig) {
         this.clusterServersConfig = clusterServersConfig;
     }
 
@@ -227,11 +227,11 @@ public class Config {
         return replicatedServersConfig;
     }
 
-    ReplicatedServersConfig getReplicatedServersConfig() {
+    public ReplicatedServersConfig getReplicatedServersConfig() {
         return replicatedServersConfig;
     }
 
-    void setReplicatedServersConfig(ReplicatedServersConfig replicatedServersConfig) {
+    public void setReplicatedServersConfig(ReplicatedServersConfig replicatedServersConfig) {
         this.replicatedServersConfig = replicatedServersConfig;
     }
 
@@ -241,7 +241,7 @@ public class Config {
      * 
      * @return ConnectionManager
      */
-    ConnectionManager getConnectionManager() {
+    public ConnectionManager getConnectionManager() {
         return connectionManager;
     }
 
@@ -277,11 +277,11 @@ public class Config {
         return singleServerConfig;
     }
 
-    SingleServerConfig getSingleServerConfig() {
+    public SingleServerConfig getSingleServerConfig() {
         return singleServerConfig;
     }
 
-    void setSingleServerConfig(SingleServerConfig singleConnectionConfig) {
+    public void setSingleServerConfig(SingleServerConfig singleConnectionConfig) {
         this.singleServerConfig = singleConnectionConfig;
     }
 
@@ -294,7 +294,7 @@ public class Config {
         return useSentinelServers(new SentinelServersConfig());
     }
 
-    SentinelServersConfig useSentinelServers(SentinelServersConfig sentinelServersConfig) {
+    public SentinelServersConfig useSentinelServers(SentinelServersConfig sentinelServersConfig) {
         checkClusterServersConfig();
         checkSingleServerConfig();
         checkMasterSlaveServersConfig();
@@ -306,11 +306,11 @@ public class Config {
         return this.sentinelServersConfig;
     }
 
-    SentinelServersConfig getSentinelServersConfig() {
+    public SentinelServersConfig getSentinelServersConfig() {
         return sentinelServersConfig;
     }
 
-    void setSentinelServersConfig(SentinelServersConfig sentinelConnectionConfig) {
+    public void setSentinelServersConfig(SentinelServersConfig sentinelConnectionConfig) {
         this.sentinelServersConfig = sentinelConnectionConfig;
     }
 
@@ -335,11 +335,11 @@ public class Config {
         return masterSlaveServersConfig;
     }
 
-    MasterSlaveServersConfig getMasterSlaveServersConfig() {
+    public MasterSlaveServersConfig getMasterSlaveServersConfig() {
         return masterSlaveServersConfig;
     }
 
-    void setMasterSlaveServersConfig(MasterSlaveServersConfig masterSlaveConnectionConfig) {
+    public void setMasterSlaveServersConfig(MasterSlaveServersConfig masterSlaveConnectionConfig) {
         this.masterSlaveServersConfig = masterSlaveConnectionConfig;
     }
 

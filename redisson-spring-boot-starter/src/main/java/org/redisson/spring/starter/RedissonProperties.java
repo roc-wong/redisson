@@ -15,24 +15,36 @@
  */
 package org.redisson.spring.starter;
 
+import org.redisson.spring.starter.config.Config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
- * 
+ *
  * @author Nikita Koksharov
  *
  */
-@ConfigurationProperties(prefix = "spring.redis.redisson")
+@ConfigurationProperties(prefix = "spring.redisson")
 public class RedissonProperties {
 
-    private String config;
+    private String configFile;
 
-    public String getConfig() {
+    @NestedConfigurationProperty
+    private Config config;
+
+    public String getConfigFile() {
+        return configFile;
+    }
+
+    public void setConfigFile(String configFile) {
+        this.configFile = configFile;
+    }
+
+    public Config getConfig() {
         return config;
     }
 
-    public void setConfig(String config) {
+    public void setConfig(Config config) {
         this.config = config;
     }
-        
 }
