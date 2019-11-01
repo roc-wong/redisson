@@ -47,6 +47,11 @@ public class SentinelServersConfig extends BaseMasterSlaveServersConfig<Sentinel
         return sentinelAddresses;
     }
 
+    /**
+     * Add Redis Sentinel node address in host:port format. Multiple nodes at once could be added.
+     *
+     * @param sentinelAddresses of Redis
+     */
     public void setSentinelAddresses(List<String> sentinelAddresses) {
         this.sentinelAddresses = sentinelAddresses;
     }
@@ -55,6 +60,11 @@ public class SentinelServersConfig extends BaseMasterSlaveServersConfig<Sentinel
         return natMap;
     }
 
+    /**
+     * Defines NAT mapping. Address as a map key is replaced with mapped address as value.
+     *
+     * @param natMap - nat mapping
+     */
     public void setNatMap(Map<String, String> natMap) {
         this.natMap = natMap;
     }
@@ -63,6 +73,11 @@ public class SentinelServersConfig extends BaseMasterSlaveServersConfig<Sentinel
         return masterName;
     }
 
+    /**
+     * Master server name used by Redis Sentinel servers and master change monitoring task.
+     *
+     * @param masterName of Redis
+     */
     public void setMasterName(String masterName) {
         this.masterName = masterName;
     }
@@ -71,6 +86,12 @@ public class SentinelServersConfig extends BaseMasterSlaveServersConfig<Sentinel
         return database;
     }
 
+    /**
+     * Database index used for Redis connection
+     * Default is <code>0</code>
+     *
+     * @param database number
+     */
     public void setDatabase(int database) {
         this.database = database;
     }
@@ -79,7 +100,24 @@ public class SentinelServersConfig extends BaseMasterSlaveServersConfig<Sentinel
         return scanInterval;
     }
 
+    /**
+     * Sentinel scan interval in milliseconds
+     *
+     * @param scanInterval in milliseconds
+     */
     public void setScanInterval(int scanInterval) {
         this.scanInterval = scanInterval;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("SentinelServersConfig{");
+        sb.append("sentinelAddresses=").append(sentinelAddresses);
+        sb.append(", natMap=").append(natMap);
+        sb.append(", masterName='").append(masterName).append('\'');
+        sb.append(", database=").append(database);
+        sb.append(", scanInterval=").append(scanInterval);
+        sb.append('}');
+        return sb.toString();
     }
 }

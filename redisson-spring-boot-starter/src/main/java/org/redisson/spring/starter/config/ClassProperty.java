@@ -38,4 +38,11 @@ public class ClassProperty {
         this.className = className;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ClassProperty{");
+        sb.append("className='").append(className).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

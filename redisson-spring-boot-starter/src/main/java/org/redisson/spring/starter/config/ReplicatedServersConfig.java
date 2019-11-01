@@ -47,6 +47,11 @@ public class ReplicatedServersConfig extends BaseMasterSlaveServersConfig<Replic
         return nodeAddresses;
     }
 
+    /**
+     * Add Redis cluster node address. Use follow format -- <code>host:port</code>
+     *
+     * @param nodeAddresses in <code>host:port</code> format
+     */
     public void setNodeAddresses(List<String> nodeAddresses) {
         this.nodeAddresses = nodeAddresses;
     }
@@ -55,6 +60,11 @@ public class ReplicatedServersConfig extends BaseMasterSlaveServersConfig<Replic
         return scanInterval;
     }
 
+    /**
+     * Replication group scan interval in milliseconds
+     *
+     * @param scanInterval in milliseconds
+     */
     public void setScanInterval(int scanInterval) {
         this.scanInterval = scanInterval;
     }
@@ -63,7 +73,23 @@ public class ReplicatedServersConfig extends BaseMasterSlaveServersConfig<Replic
         return database;
     }
 
+    /**
+     * Database index used for Redis connection
+     * Default is <code>0</code>
+     *
+     * @param database number
+     */
     public void setDatabase(int database) {
         this.database = database;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ReplicatedServersConfig{");
+        sb.append("nodeAddresses=").append(nodeAddresses);
+        sb.append(", scanInterval=").append(scanInterval);
+        sb.append(", database=").append(database);
+        sb.append('}');
+        return sb.toString();
     }
 }

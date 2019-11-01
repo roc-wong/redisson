@@ -63,6 +63,11 @@ public class SingleServerConfig extends BaseConfig<SingleServerConfig> {
         return address;
     }
 
+    /**
+     * Set server address. Use follow format -- host:port
+     *
+     * @param address of Redis
+     */
     public void setAddress(String address) {
         this.address = address;
     }
@@ -71,6 +76,14 @@ public class SingleServerConfig extends BaseConfig<SingleServerConfig> {
         return subscriptionConnectionMinimumIdleSize;
     }
 
+    /**
+     * Minimum idle subscription connection amount.
+     * <p>
+     * Default is 1
+     *
+     * @param subscriptionConnectionMinimumIdleSize - connections amount
+     *
+     */
     public void setSubscriptionConnectionMinimumIdleSize(
             int subscriptionConnectionMinimumIdleSize) {
         this.subscriptionConnectionMinimumIdleSize = subscriptionConnectionMinimumIdleSize;
@@ -80,6 +93,13 @@ public class SingleServerConfig extends BaseConfig<SingleServerConfig> {
         return subscriptionConnectionPoolSize;
     }
 
+    /**
+     * Redis subscription-connection pool size limit
+     * <p>
+     * Default is 50
+     *
+     * @param subscriptionConnectionPoolSize - pool size
+     */
     public void setSubscriptionConnectionPoolSize(int subscriptionConnectionPoolSize) {
         this.subscriptionConnectionPoolSize = subscriptionConnectionPoolSize;
     }
@@ -88,6 +108,13 @@ public class SingleServerConfig extends BaseConfig<SingleServerConfig> {
         return connectionMinimumIdleSize;
     }
 
+    /**
+     * Minimum idle Redis connection amount.
+     * <p>
+     * Default is <code>10</code>
+     *
+     * @param connectionMinimumIdleSize - connections amount
+     */
     public void setConnectionMinimumIdleSize(int connectionMinimumIdleSize) {
         this.connectionMinimumIdleSize = connectionMinimumIdleSize;
     }
@@ -96,6 +123,13 @@ public class SingleServerConfig extends BaseConfig<SingleServerConfig> {
         return connectionPoolSize;
     }
 
+    /**
+     * Redis connection pool size
+     * <p>
+     * Default is <code>64</code>
+     *
+     * @param connectionPoolSize - pool size
+     */
     public void setConnectionPoolSize(int connectionPoolSize) {
         this.connectionPoolSize = connectionPoolSize;
     }
@@ -104,6 +138,12 @@ public class SingleServerConfig extends BaseConfig<SingleServerConfig> {
         return database;
     }
 
+    /**
+     * Database index used for Redis connection
+     * Default is <code>0</code>
+     *
+     * @param database index
+     */
     public void setDatabase(int database) {
         this.database = database;
     }
@@ -112,7 +152,30 @@ public class SingleServerConfig extends BaseConfig<SingleServerConfig> {
         return dnsMonitoringInterval;
     }
 
+    /**
+     * Interval in milliseconds to check the endpoint's DNS<p>
+     * Applications must ensure the JVM DNS cache TTL is low enough to support this.<p>
+     * Set <code>-1</code> to disable.
+     * <p>
+     * Default is <code>5000</code>.
+     *
+     * @param dnsMonitoringInterval time
+     */
     public void setDnsMonitoringInterval(long dnsMonitoringInterval) {
         this.dnsMonitoringInterval = dnsMonitoringInterval;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("SingleServerConfig{");
+        sb.append("address='").append(address).append('\'');
+        sb.append(", subscriptionConnectionMinimumIdleSize=").append(subscriptionConnectionMinimumIdleSize);
+        sb.append(", subscriptionConnectionPoolSize=").append(subscriptionConnectionPoolSize);
+        sb.append(", connectionMinimumIdleSize=").append(connectionMinimumIdleSize);
+        sb.append(", connectionPoolSize=").append(connectionPoolSize);
+        sb.append(", database=").append(database);
+        sb.append(", dnsMonitoringInterval=").append(dnsMonitoringInterval);
+        sb.append('}');
+        return sb.toString();
     }
 }

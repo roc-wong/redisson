@@ -41,6 +41,11 @@ public class ClusterServersConfig extends BaseMasterSlaveServersConfig<ClusterSe
         return natMap;
     }
 
+    /**
+     * Defines NAT mapping. Address as a map key is replaced with mapped address as value.
+     *
+     * @param natMap - nat mapping
+     */
     public void setNatMap(Map<String, String> natMap) {
         this.natMap = natMap;
     }
@@ -57,7 +62,24 @@ public class ClusterServersConfig extends BaseMasterSlaveServersConfig<ClusterSe
         return scanInterval;
     }
 
+    /**
+     * Redis cluster scan interval in milliseconds
+     * <p>
+     * Default is <code>5000</code>
+     *
+     * @param scanInterval in milliseconds
+     */
     public void setScanInterval(int scanInterval) {
         this.scanInterval = scanInterval;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ClusterServersConfig{");
+        sb.append("natMap=").append(natMap);
+        sb.append(", nodeAddresses=").append(nodeAddresses);
+        sb.append(", scanInterval=").append(scanInterval);
+        sb.append('}');
+        return sb.toString();
     }
 }

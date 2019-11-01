@@ -68,16 +68,6 @@ public class BaseMasterSlaveServersConfig<T extends BaseMasterSlaveServersConfig
     private int subscriptionConnectionMinimumIdleSize = 1;
 
     /**
-     * @deprecated use {@link #setSubscriptionConnectionMinimumIdleSize(int)}
-     */
-    private int slaveSubscriptionConnectionMinimumIdleSize = 1;
-
-    /**
-     * @deprecated use {@link #setSubscriptionConnectionPoolSize(int)}
-     */
-    private int slaveSubscriptionConnectionPoolSize;
-
-    /**
      * Redis 'slave' node maximum subscription (pub/sub) connection pool size for <b>each</b> slave
      * node
      */
@@ -289,16 +279,18 @@ public class BaseMasterSlaveServersConfig<T extends BaseMasterSlaveServersConfig
         this.dnsMonitoringInterval = dnsMonitoringInterval;
     }
 
+    @Deprecated
     public int getSlaveSubscriptionConnectionPoolSize() {
-        return slaveSubscriptionConnectionPoolSize;
+        return getSubscriptionConnectionPoolSize();
     }
 
     /**
      * @param slaveSubscriptionConnectionPoolSize - pool size
      * @deprecated use {@link #setSubscriptionConnectionPoolSize(int)}
      */
+    @Deprecated
     public void setSlaveSubscriptionConnectionPoolSize(int slaveSubscriptionConnectionPoolSize) {
-        this.slaveSubscriptionConnectionPoolSize = slaveSubscriptionConnectionPoolSize;
+        setSubscriptionConnectionPoolSize(slaveSubscriptionConnectionPoolSize);
     }
 
     public boolean checkSkipSlavesInit() {
@@ -319,4 +311,22 @@ public class BaseMasterSlaveServersConfig<T extends BaseMasterSlaveServersConfig
         return getSubscriptionConnectionMinimumIdleSize();
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("BaseMasterSlaveServersConfig{");
+        sb.append("loadBalancer=").append(loadBalancer);
+        sb.append(", slaveConnectionMinimumIdleSize=").append(slaveConnectionMinimumIdleSize);
+        sb.append(", slaveConnectionPoolSize=").append(slaveConnectionPoolSize);
+        sb.append(", failedSlaveReconnectionInterval=").append(failedSlaveReconnectionInterval);
+        sb.append(", failedSlaveCheckInterval=").append(failedSlaveCheckInterval);
+        sb.append(", masterConnectionMinimumIdleSize=").append(masterConnectionMinimumIdleSize);
+        sb.append(", masterConnectionPoolSize=").append(masterConnectionPoolSize);
+        sb.append(", readMode=").append(readMode);
+        sb.append(", subscriptionMode=").append(subscriptionMode);
+        sb.append(", subscriptionConnectionMinimumIdleSize=").append(subscriptionConnectionMinimumIdleSize);
+        sb.append(", subscriptionConnectionPoolSize=").append(subscriptionConnectionPoolSize);
+        sb.append(", dnsMonitoringInterval=").append(dnsMonitoringInterval);
+        sb.append('}');
+        return sb.toString();
+    }
 }

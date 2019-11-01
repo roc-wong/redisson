@@ -53,8 +53,6 @@ public class BaseConfig<T extends BaseConfig<T>> {
 
     private int retryAttempts = 3;
 
-    private int reconnectionTimeout = 3000;
-
     private int retryInterval = 1500;
 
     /**
@@ -98,6 +96,13 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return idleConnectionTimeout;
     }
 
+    /**
+     * If pooled connection not used for a <code>timeout</code> time
+     * and current connections amount bigger than minimum idle connections pool size,
+     * then it will closed and removed from pool.
+     *
+     * @param idleConnectionTimeout - timeout in milliseconds
+     */
     public void setIdleConnectionTimeout(int idleConnectionTimeout) {
         this.idleConnectionTimeout = idleConnectionTimeout;
     }
@@ -106,6 +111,7 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return pingTimeout;
     }
 
+    @Deprecated
     public void setPingTimeout(int pingTimeout) {
         this.pingTimeout = pingTimeout;
     }
@@ -114,6 +120,13 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return connectTimeout;
     }
 
+    /**
+     * Timeout during connecting to any Redis server.
+     * <p>
+     * Default is <code>10000</code> milliseconds.
+     *
+     * @param connectTimeout - timeout in milliseconds
+     */
     public void setConnectTimeout(int connectTimeout) {
         this.connectTimeout = connectTimeout;
     }
@@ -122,6 +135,13 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return timeout;
     }
 
+    /**
+     * Redis server response timeout. Starts to countdown when Redis command has been successfully sent.
+     * <p>
+     * Default is <code>3000</code> milliseconds
+     *
+     * @param timeout in milliseconds
+     */
     public void setTimeout(int timeout) {
         this.timeout = timeout;
     }
@@ -130,6 +150,15 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return retryAttempts;
     }
 
+    /**
+     * Error will be thrown if Redis command can't be sent to Redis server after <code>retryAttempts</code>.
+     * But if it sent successfully then <code>timeout</code> will be started.
+     * <p>
+     * Default is <code>3</code> attempts
+     *
+     * @see #timeout
+     * @param retryAttempts - retry attempts
+     */
     public void setRetryAttempts(int retryAttempts) {
         this.retryAttempts = retryAttempts;
     }
@@ -138,6 +167,16 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return retryInterval;
     }
 
+    /**
+     * Defines time interval for another one attempt send Redis command
+     * if it hasn't been sent already.
+     *
+     * <p>
+     * Default is <code>1500</code> milliseconds
+     *
+     * @see #retryAttempts
+     * @param retryInterval - time in milliseconds
+     */
     public void setRetryInterval(int retryInterval) {
         this.retryInterval = retryInterval;
     }
@@ -146,6 +185,12 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return password;
     }
 
+    /**
+     * Password for Redis authentication. Should be null if not needed
+     * Default is <code>null</code>
+     *
+     * @param password for connection
+     */
     public void setPassword(String password) {
         this.password = password;
     }
@@ -154,6 +199,12 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return subscriptionsPerConnection;
     }
 
+    /**
+     * Subscriptions per Redis connection limit
+     * Default is 5
+     *
+     * @param subscriptionsPerConnection amount
+     */
     public void setSubscriptionsPerConnection(int subscriptionsPerConnection) {
         this.subscriptionsPerConnection = subscriptionsPerConnection;
     }
@@ -162,6 +213,12 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return clientName;
     }
 
+    /**
+     * Setup connection name during connection init
+     * via CLIENT SETNAME command
+     *
+     * @param clientName - name of client
+     */
     public void setClientName(String clientName) {
         this.clientName = clientName;
     }
@@ -170,6 +227,13 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return sslEnableEndpointIdentification;
     }
 
+    /**
+     * Enables SSL endpoint identification.
+     * <p>
+     * Default is <code>true</code>
+     *
+     * @param sslEnableEndpointIdentification - boolean value
+     */
     public void setSslEnableEndpointIdentification(boolean sslEnableEndpointIdentification) {
         this.sslEnableEndpointIdentification = sslEnableEndpointIdentification;
     }
@@ -178,6 +242,13 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return sslProvider;
     }
 
+    /**
+     * Defines SSL provider used to handle SSL connections.
+     * <p>
+     * Default is JDK
+     *
+     * @param sslProvider - ssl provider
+     */
     public void setSslProvider(SslProvider sslProvider) {
         this.sslProvider = sslProvider;
     }
@@ -186,6 +257,11 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return sslTruststorePassword;
     }
 
+    /**
+     * Defines password for SSL truststore
+     *
+     * @param sslTruststorePassword - password
+     */
     public void setSslTruststorePassword(String sslTruststorePassword) {
         this.sslTruststorePassword = sslTruststorePassword;
     }
@@ -194,6 +270,11 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return sslTruststore;
     }
 
+    /**
+     * Defines path to SSL truststore
+     *
+     * @param sslTruststore - path
+     */
     public void setSslTruststore(String sslTruststore) {
         this.sslTruststore = sslTruststore;
     }
@@ -202,6 +283,11 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return sslKeystore;
     }
 
+    /**
+     * Defines path to SSL keystore
+     *
+     * @param sslKeystore - path to keystore
+     */
     public void setSslKeystore(String sslKeystore) {
         this.sslKeystore = sslKeystore;
     }
@@ -210,6 +296,11 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return sslKeystorePassword;
     }
 
+    /**
+     * Defines password for SSL keystore
+     *
+     * @param sslKeystorePassword - password
+     */
     public void setSslKeystorePassword(String sslKeystorePassword) {
         this.sslKeystorePassword = sslKeystorePassword;
     }
@@ -218,6 +309,14 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return pingConnectionInterval;
     }
 
+    /**
+     * Defines PING command sending interval per connection to Redis.
+     * <code>0</code> means disable.
+     * <p>
+     * Default is <code>0</code>
+     *
+     * @param pingConnectionInterval - time in milliseconds
+     */
     public void setPingConnectionInterval(int pingConnectionInterval) {
         this.pingConnectionInterval = pingConnectionInterval;
     }
@@ -226,6 +325,13 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return keepAlive;
     }
 
+    /**
+     * Enables TCP keepAlive for connection
+     * <p>
+     * Default is <code>false</code>
+     *
+     * @param keepAlive - boolean value
+     */
     public void setKeepAlive(boolean keepAlive) {
         this.keepAlive = keepAlive;
     }
@@ -234,15 +340,56 @@ public class BaseConfig<T extends BaseConfig<T>> {
         return tcpNoDelay;
     }
 
+    /**
+     * Enables TCP noDelay for connection
+     * <p>
+     * Default is <code>false</code>
+     *
+     * @param tcpNoDelay - boolean value
+     */
     public void setTcpNoDelay(boolean tcpNoDelay) {
         this.tcpNoDelay = tcpNoDelay;
     }
 
-    public int getReconnectionTimeout() {
-        return reconnectionTimeout;
+    /**
+     * Use {@link BaseMasterSlaveServersConfig#setFailedSlaveReconnectionInterval(int)} instead
+     * @param reconnectionTimeout
+     */
+    @Deprecated
+    public void setReconnectionTimeout(int reconnectionTimeout) {
+        log.warn("'reconnectionTimeout' setting in unavailable. Please use 'failedSlaveReconnectionInterval' setting instead!");
     }
 
-    public void setReconnectionTimeout(int reconnectionTimeout) {
-        this.reconnectionTimeout = reconnectionTimeout;
+    /**
+     * Use {@link BaseMasterSlaveServersConfig#setFailedSlaveCheckInterval(int)} instead
+     */
+    @Deprecated
+    public void setFailedAttempts(int slaveFailedAttempts) {
+        log.warn("'failedAttempts' setting in unavailable. Please use 'failedSlaveCheckInterval' setting instead!");
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("BaseConfig{");
+        sb.append("idleConnectionTimeout=").append(idleConnectionTimeout);
+        sb.append(", pingTimeout=").append(pingTimeout);
+        sb.append(", connectTimeout=").append(connectTimeout);
+        sb.append(", timeout=").append(timeout);
+        sb.append(", retryAttempts=").append(retryAttempts);
+        sb.append(", retryInterval=").append(retryInterval);
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", subscriptionsPerConnection=").append(subscriptionsPerConnection);
+        sb.append(", clientName='").append(clientName).append('\'');
+        sb.append(", sslEnableEndpointIdentification=").append(sslEnableEndpointIdentification);
+        sb.append(", sslProvider=").append(sslProvider);
+        sb.append(", sslTruststore='").append(sslTruststore).append('\'');
+        sb.append(", sslTruststorePassword='").append(sslTruststorePassword).append('\'');
+        sb.append(", sslKeystore='").append(sslKeystore).append('\'');
+        sb.append(", sslKeystorePassword='").append(sslKeystorePassword).append('\'');
+        sb.append(", pingConnectionInterval=").append(pingConnectionInterval);
+        sb.append(", keepAlive=").append(keepAlive);
+        sb.append(", tcpNoDelay=").append(tcpNoDelay);
+        sb.append('}');
+        return sb.toString();
     }
 }

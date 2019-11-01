@@ -223,4 +223,28 @@ public class Config {
     public void setAddressResolverGroupFactory(ClassProperty addressResolverGroupFactory) {
         this.addressResolverGroupFactory = addressResolverGroupFactory;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Config{");
+        sb.append("sentinelServersConfig=").append(sentinelServersConfig);
+        sb.append(", masterSlaveServersConfig=").append(masterSlaveServersConfig);
+        sb.append(", singleServerConfig=").append(singleServerConfig);
+        sb.append(", clusterServersConfig=").append(clusterServersConfig);
+        sb.append(", replicatedServersConfig=").append(replicatedServersConfig);
+        sb.append(", threads=").append(threads);
+        sb.append(", nettyThreads=").append(nettyThreads);
+        sb.append(", codec=").append(codec);
+        sb.append(", referenceEnabled=").append(referenceEnabled);
+        sb.append(", transportMode=").append(transportMode);
+        sb.append(", lockWatchdogTimeout=").append(lockWatchdogTimeout);
+        sb.append(", keepPubSubOrder=").append(keepPubSubOrder);
+        sb.append(", decodeInExecutor=").append(decodeInExecutor);
+        sb.append(", useScriptCache=").append(useScriptCache);
+        sb.append(", minCleanUpDelay=").append(minCleanUpDelay);
+        sb.append(", maxCleanUpDelay=").append(maxCleanUpDelay);
+        sb.append(", addressResolverGroupFactory=").append(addressResolverGroupFactory);
+        sb.append('}');
+        return sb.toString();
+    }
 }

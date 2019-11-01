@@ -45,6 +45,11 @@ public class MasterSlaveServersConfig extends
         return slaveAddresses;
     }
 
+    /**
+     * Add Redis slave server address. Use follow format -- host:port
+     *
+     * @param slaveAddresses of Redis
+     */
     public void setSlaveAddresses(Set<String> slaveAddresses) {
         this.slaveAddresses = slaveAddresses;
     }
@@ -53,6 +58,11 @@ public class MasterSlaveServersConfig extends
         return masterAddress;
     }
 
+    /**
+     * Set Redis master server address. Use follow format -- host:port
+     *
+     * @param masterAddress of Redis
+     */
     public void setMasterAddress(String masterAddress) {
         this.masterAddress = masterAddress;
     }
@@ -61,7 +71,23 @@ public class MasterSlaveServersConfig extends
         return database;
     }
 
+    /**
+     * Database index used for Redis connection
+     * Default is <code>0</code>
+     *
+     * @param database number
+     */
     public void setDatabase(int database) {
         this.database = database;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("MasterSlaveServersConfig{");
+        sb.append("slaveAddresses=").append(slaveAddresses);
+        sb.append(", masterAddress='").append(masterAddress).append('\'');
+        sb.append(", database=").append(database);
+        sb.append('}');
+        return sb.toString();
     }
 }
